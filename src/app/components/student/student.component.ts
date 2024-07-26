@@ -1,10 +1,11 @@
-import { Component, input, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Student } from '../../interfaces/student';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-student',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './student.component.html',
   styleUrl: './student.component.css'
 })
