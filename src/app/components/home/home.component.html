@@ -5,4 +5,6 @@
     </form>
 </section>
 
-<section class="results"></section>
+<section class="results">
+    <app-student *ngFor="let student of students" [student]="student"></app-student>
+</section>

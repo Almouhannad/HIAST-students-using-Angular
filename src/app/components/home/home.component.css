@@ -1,0 +1,42 @@
+section {
+    text-align: center;
+  }
+  
+  form {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  input[type="text"] {
+    width: 40%;
+    padding: 1em;
+    font-size: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+  }
+  
+  button.primary {
+    padding: 1em 2em;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button.primary:hover {
+    background-color: #3e8e41;
+  }
+
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  app-student {
+    margin: 1em;
+  }
