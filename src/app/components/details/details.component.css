@@ -1,0 +1,24 @@
+.info-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.info-table th,
+.info-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.info-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.info-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.info-table tr:hover {
+    background-color: #ccc;
+}

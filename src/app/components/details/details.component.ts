@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Student } from '../../interfaces/student';
+import { StudentsService } from '../../services/students/students.service';
 
 @Component({
   selector: 'app-details',
@@ -10,9 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  studentId = 0;
-  
+  studentService: StudentsService = inject(StudentsService);
+  student: Student | undefined;
+
   constructor() {
-    this.studentId = Number(this.route.snapshot.params['id']);
+    const studentId:Number = Number(this.route.snapshot.params['id']);
+    this.student = this.studentService.getStudentById(studentId);
   }
 }

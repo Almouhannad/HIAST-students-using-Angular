@@ -1,2 +1,26 @@
-<p>details works!</p>
-<h1>{{studentId}}</h1>
+<article>
+    <section class="listing-details">
+        <table class="info-table">
+            <tr>
+                <th>First Name:</th>
+                <td>{{student?.firstName}}</td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td>{{student?.lastName}}</td>
+            </tr>
+            <tr>
+                <th>Year:</th>
+                <td>{{student?.year}}</td>
+            </tr>
+            <tr>
+                <th>City:</th>
+                <td>{{student?.city}}</td>
+            </tr>
+            <tr>
+                <th>Phone Number:</th>
+                <td>{{student?.phoneNumber}}</td>
+            </tr>
+        </table>
+    </section>
+</article>
