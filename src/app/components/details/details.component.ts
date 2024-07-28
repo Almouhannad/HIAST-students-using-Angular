@@ -29,6 +29,7 @@ export class DetailsComponent {
     this.studentService.getStudentById(studentId).then(
       (student: Student | undefined) => {
         this.student = student;
+        this.editForm.setValue({firstName:student?.firstName ?? '', lastName:student?.lastName ?? ''})
       }
     )
   }
