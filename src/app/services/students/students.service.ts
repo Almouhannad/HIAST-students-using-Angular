@@ -5,6 +5,7 @@ import { Student } from '../../interfaces/student';
   providedIn: 'root' // It can be injected everywhere
 })
 export class StudentsService {
+
   protected students:Student[] = [
     {
       "id": 0,
@@ -80,5 +81,10 @@ export class StudentsService {
 
   getStudentById(id :Number) : Student | undefined {
     return this.students.find(student => student.id === id);
+  }
+
+  submitEdit(id: Number, firstName: string, lastName: string) {
+    this.students[id.valueOf()].firstName = firstName;
+    this.students[id.valueOf()].lastName = lastName;
   }
 }
