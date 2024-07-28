@@ -1,10 +1,10 @@
 <section>
     <form>
-        <input type="text" placeholder="Search by name">
-        <button class="primary" type="button">Search</button>
+        <!-- Template variable -->
+        <input type="text" placeholder="Filter by name" #filter (input)="filterStudents(filter.value)" (keydown.enter)="$event.preventDefault()">
     </form>
 </section>
 
 <section class="results">
-    <app-student *ngFor="let student of students" [student]="student"></app-student>
+    <app-student *ngFor="let student of filteredStudents" [student]="student"></app-student>
 </section>

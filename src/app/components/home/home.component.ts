@@ -12,14 +12,30 @@ import { StudentsService } from '../../services/students/students.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
   students: Student[] = [];
-  studentsService:StudentsService = inject(StudentsService);
+  filteredStudents: Student[] = [];
+  studentsService: StudentsService = inject(StudentsService);
+
 
   constructor() {
     this.studentsService.getAllStudents().then(
       (students: Student[]) => {
         this.students = students;
+        this.filteredStudents = students;
       }
     )
   }
+
+  filterStudents(text: string) {
+    if (!text) this.filteredStudents = this.students;
+    this.filteredStudents = this.students.filter(
+      student => student?.firstName.toLowerCase().includes(text.toLowerCase())
+    )
+  }
+
+  preventDefault($event: Event) {
+    $event.preventDefault();
+  }
+
 }

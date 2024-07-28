@@ -1,18 +1,44 @@
 .listing {
-  background-color: #f7f7f7;
-  padding: 1em;
+  position: relative;
+  display: inline-block;
+  width: 300px;
+  margin: 20px;
+  padding: 20px;
   border: 1px solid #ddd;
-  width: 200px;
-  /* fixed width */
-  height: 250px;
-  /* fixed height */
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f7f7f7;
+  height: 200px; /* Add a fixed height to the card */
 }
 
-a {
-  color: black;
+.listing h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.listing .first-name {
+  color: #337ab7;
+}
+
+.listing .last-name {
+  color: #666;
+}
+
+.listing .btn-details {
+  position: absolute;
+  bottom: 20px; /* Position the button 20px from the bottom */
+  left: 50%; /* Position the button 50% from the left */
+  transform: translateX(-50%); /* Center the button horizontally */
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.listing .btn-details:hover {
+  background-color: #23527c;
 }
