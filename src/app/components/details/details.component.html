@@ -1,3 +1,7 @@
+<section class="go-back-section">
+    <button [routerLink]="['']">Go back</button>
+</section>
+
 <article>
     <section class="listing-details">
         <table class="info-table">
@@ -23,4 +27,20 @@
             </tr>
         </table>
     </section>
+
+    <section class="edit-form">
+        <h2 class="form-heading">Edit student</h2>
+        <!-- () For edit binding -->
+        <form [formGroup]="editForm" (submit)="submitEdit()">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" formControlName="firstName">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" formControlName="lastName">
+
+            <button type="submit" class="primary">Save</button>
+
+        </form>
+    </section>
+
+
 </article>
