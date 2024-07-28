@@ -6,85 +6,41 @@ import { Student } from '../../interfaces/student';
 })
 export class StudentsService {
 
-  protected students:Student[] = [
-    {
-      "id": 0,
-      "firstName": "Almouhannad",
-      "lastName": "Hafez",
-      "city": "Banias",
-      "year": 4,
-      "phoneNumber": "0909090909"
-    },
-    {
-      "id": 1,
-      "firstName": "Aram",
-      "lastName": "Mouhammad",
-      "city": "Lattakia",
-      "year": 4, 
-      "phoneNumber": "0909090909"
-    },
-    {
-      "id": 2,
-      "firstName": "Rawad",
-      "lastName": "Rabie",
-      "city": "Damascus",
-      "year": 4,
-      "phoneNumber": "0909090909"
-    },
-    {
-      "id": 3,
-      "firstName": "Ahmad",
-      "lastName": "Ali",
-      "city": "Damascus",
-      "year": 4,
-      "phoneNumber": "0909090909"
-    },
-    {
-      "id": 4,
-      "firstName": "Mouhammad Nour",
-      "lastName": "Ali",
-      "city": "Damascus",
-      "year": 4,
-      "phoneNumber": "0909090909"
-    },
-    {
-      "id": 5,
-      "firstName": "Mouhammad",
-      "lastName": "Alloush",
-      "city": "Damascus",
-      "year": 4,
-      "phoneNumber": "0909090909"
-    },
-    {
-      "id": 6,
-      "firstName": "Alhaitham",
-      "lastName": "Salloum",
-      "city": "Damascus",
-      "year": 4,
-      "phoneNumber": "0909090909"
-    },
-    {
-      "id": 7,
-      "firstName": "Ammer",
-      "lastName": "Abuammar",
-      "city": "Damascus",
-      "year": 4,
-      "phoneNumber": "0909090909"
-    },
+  url = 'http://localhost:3000/students';
 
-  ];
+
   constructor() { }
 
-  getAllStudents() : Student[] {
-    return this.students;
+  async getAllStudents(): Promise<Student[]> {
+    const data = await fetch(this.url);
+    return await data.json() ?? [];
   }
 
-  getStudentById(id :Number) : Student | undefined {
-    return this.students.find(student => student.id === id);
+  async getStudentById(id: Number): Promise<Student | undefined> {
+    const data = await fetch(`${this.url}/${id}`);
+    return await data.json() ?? {};
   }
 
-  submitEdit(id: Number, firstName: string, lastName: string) {
-    this.students[id.valueOf()].firstName = firstName;
-    this.students[id.valueOf()].lastName = lastName;
+  async submitEdit(id: Number, firstName: string, lastName: string) {
+    try {
+      const student = await this.getStudentById(id);
+      if (student) {
+        student.firstName = firstName;
+        student.lastName = lastName;
+        const response = await fetch(`${this.url}/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(student)
+        });
+        const data = await response.json();
+        console.log(data);
+      } else {
+        console.error('Student not found');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
 }

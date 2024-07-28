@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Student } from '../../interfaces/student';
 import { StudentsService } from '../../services/students/students.service';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-details',
@@ -24,16 +24,29 @@ export class DetailsComponent {
   )
 
   constructor() {
-    const studentId:Number = Number(this.route.snapshot.params['id']);
-    this.student = this.studentService.getStudentById(studentId);
+    const studentId: Number = Number(this.route.snapshot.params['id']);
+    console.log(studentId);
+    this.studentService.getStudentById(studentId).then(
+      (student: Student | undefined) => {
+        this.student = student;
+      }
+    )
   }
 
   submitEdit() {
-    const studentId:Number = Number(this.route.snapshot.params['id']);
+    const studentId: Number = Number(this.route.snapshot.params['id']);
     this.studentService.submitEdit(
       studentId,
       this.editForm.value.firstName ?? '', // ?? for dealing with null and undefined
       this.editForm.value.lastName ?? ''
+    ).then( // Update editied student
+      () => {
+        this.studentService.getStudentById(studentId).then(
+          (student: Student | undefined) => {
+            this.student = student;
+          }
+        )
+      }
     );
   }
 

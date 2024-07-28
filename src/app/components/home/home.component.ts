@@ -16,6 +16,10 @@ export class HomeComponent {
   studentsService:StudentsService = inject(StudentsService);
 
   constructor() {
-    this.students = this.studentsService.getAllStudents();
+    this.studentsService.getAllStudents().then(
+      (students: Student[]) => {
+        this.students = students;
+      }
+    )
   }
 }
